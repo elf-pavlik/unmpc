@@ -1,0 +1,12 @@
+{
+  "name": "unmpc",
+  "version": "0.0.0",
+  "authors": [
+    "elf Pavlik <perpetual-tripper@wwelves.org>"
+  ],
+  "license": "Unlicense",
+  "dependencies": {
+    "bootstrap": "~3.3.4",
+    "axios": "~0.5.4"
+  }
+}

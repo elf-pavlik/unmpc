@@ -1,0 +1,21 @@
+body {
+  background-image: url('http://subtlepatterns.com/patterns/paper.png');
+}
+#context {
+  margin-top: 10px;
+}
+
+#context input{
+  height: 2.2em;
+  font-size: 1.2em;
+}
+
+.input-group-addon {
+  padding: 0 10px;
+  margin: 0;
+}
+
+.input-group-addon button {
+  margin: 0 -10px;
+
+}

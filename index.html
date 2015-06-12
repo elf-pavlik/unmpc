@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+
+  <title>Unhosted Micropub Client</title>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/axios/dist/axios.js"></script>
+  <script src="app.js"></script>
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css" />
+  <link rel="stylesheet" href="screen.css" />
+
+</head>
+<body>
+  <div class="container">
+    <div id="context" class="row">
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="feed">feed:</span>
+          <input type="text" class="form-control" name="feed" placeholder="indiespac.es/unmpc" aria-describedby="basic-addon1">
+          <span class="input-group-addon">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Open
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="input-group">
+          <span class="input-group-addon" id="author">author:</span>
+          <input type="text" class="form-control" name="author" placeholder="sub.domain.tld" aria-describedby="basic-addon1">
+          <span class="input-group-addon">
+            <button type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign In
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
