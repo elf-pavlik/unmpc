@@ -19,22 +19,34 @@
     <div id="context" class="row">
       <div class="col-lg-6">
         <div class="input-group">
-          <span class="input-group-addon" id="feed">feed:</span>
+          <span class="input-group-addon" id="space">space</span>
           <input type="text" class="form-control" name="feed" placeholder="indiespac.es/unmpc" aria-describedby="basic-addon1">
           <span class="input-group-addon">
             <button type="button" class="btn btn-default">
-                <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> Open
+                <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> View
             </button>
           </span>
         </div>
       </div>
       <div class="col-lg-6">
         <div class="input-group">
-          <span class="input-group-addon" id="author">author:</span>
+          <span class="input-group-addon" id="persona">persona</span>
           <input type="text" class="form-control" name="author" placeholder="sub.domain.tld" aria-describedby="basic-addon1">
           <span class="input-group-addon">
             <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign In
+            </button>
+          </span>
+        </div>
+      </div>
+    </div>
+    <div id="editor" class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <div class="input-group">
+          <textarea disabled class="form-control" placeholder="Sign In to post on this wall" rows="3" id="comment"></textarea>
+          <span class="input-group-addon">
+            <button disabled type="button" class="btn btn-default">
+                <span class="glyphicon glyphicon-send" aria-hidden="true"></span> Post
             </button>
           </span>
         </div>

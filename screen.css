@@ -4,6 +4,14 @@ body {
 #context {
   margin-top: 10px;
 }
+#editor {
+  margin-top: 2em;
+}
+
+#editor button {
+  margin: 0 -10px;
+  height: 120%;
+}
 
 #context input{
   height: 2.2em;
