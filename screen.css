@@ -13,9 +13,13 @@ body {
   height: 120%;
 }
 
-#context input{
+#context input {
   height: 2.2em;
   font-size: 1.2em;
+}
+
+#wall {
+  margin-top: 2em;
 }
 
 .input-group-addon {

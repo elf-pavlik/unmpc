@@ -1,10 +1,18 @@
 $(function(){
-  axios.get('https://wwelves.org/perpetual-tripper/log/', {
-    responseType: 'json'
-  })
+
+  var space = { url: 'https://phubble.tuxed.net/just-testing/' };
+
+  // FIXME get initial space from config
+  axios.get(space.url)
   .then(function(response) {
-    console.log(response.data);
-  });
+    var html = $.parseHTML(response.data);
+    // FIXME get container in different way
+    var items = microformats.getItems({ node: html[13] }).items;
+    items.forEach(function(item) {
+      $('#wall ul').append('<li class="list-group-item"><div>' + item.properties.content + '</div><span>' + item.properties.published  + '</span> <span>' + item.properties.author  +  '</span></li>');
+    });
+  $('#editor').show();
+  }).catch(function(error){ console.log(error); });
 
   console.log('READY!');
 
@@ -17,6 +25,9 @@ $(function(){
     $('#editor button').attr('disabled', 'disabled');
     $('#editor textarea').attr('disabled', 'disabled');
   }
+
+  // init
+  $('#editor').hide();
 
   //debug
   window.app = {};

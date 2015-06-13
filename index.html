@@ -7,6 +7,7 @@
   <script src="bower_components/jquery/dist/jquery.js"></script>
   <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
   <script src="bower_components/axios/dist/axios.js"></script>
+  <script src="bower_components/microformat-shiv/microformat-shiv.js"></script>
   <script src="app.js"></script>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
@@ -20,7 +21,7 @@
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon" id="space">space</span>
-          <input type="text" class="form-control" name="feed" placeholder="indiespac.es/unmpc" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="feed" placeholder="https://phubble.tuxed.net/just-testing/" aria-describedby="basic-addon1">
           <span class="input-group-addon">
             <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-cloud-download" aria-hidden="true"></span> View
@@ -31,7 +32,7 @@
       <div class="col-lg-6">
         <div class="input-group">
           <span class="input-group-addon" id="persona">persona</span>
-          <input type="text" class="form-control" name="author" placeholder="sub.domain.tld" aria-describedby="basic-addon1">
+          <input type="text" class="form-control" name="author" placeholder="(sub.)domain.tld(/account)" aria-describedby="basic-addon1">
           <span class="input-group-addon">
             <button type="button" class="btn btn-default">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span> Sign In
@@ -50,6 +51,12 @@
             </button>
           </span>
         </div>
+      </div>
+    </div>
+    <div id="wall" class="row">
+      <div class="col-lg-6 col-lg-offset-3">
+        <ul class="list-group">
+        </ul>
       </div>
     </div>
   </div>

@@ -7,6 +7,7 @@
   "license": "Unlicense",
   "dependencies": {
     "bootstrap": "~3.3.4",
-    "axios": "~0.5.4"
+    "axios": "~0.5.4",
+    "microformat-shiv": "~0.3.4"
   }
 }
