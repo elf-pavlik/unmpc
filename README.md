@@ -11,6 +11,12 @@ app](https://unhosted.org/)
 
 ## TODO
 
+* [ ] use query-string parsing library
+* [ ] setup CORS proxy as fallback
+
+
+## BACKLOG
+* [ ] sign in to post button, enable editor after signing in
 * [ ] color highlight if agent uses HTTPS (warning if not)
 * [ ] color highlight if feed uses HTTPS (warning if not)
 * [ ] fetch authors profiles and include avatars if discovered
