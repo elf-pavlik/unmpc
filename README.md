@@ -18,6 +18,7 @@ app](https://unhosted.org/)
 
 
 ## BACKLOG
+* [ ] subscribe to live updates (via SSE)
 * [ ] color highlight if agent uses HTTPS (warning if not)
 * [ ] color highlight if feed uses HTTPS (warning if not)
 * [ ] fetch authors profiles and include avatars if discovered

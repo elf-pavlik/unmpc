@@ -181,8 +181,12 @@ $(function(){
   // init
   console.log('READY!');
 
-  var client_id = 'https://localhost:3000/';
-  var redirect_uri = 'https://localhost:3000/';
+  // force HTTPS
+  if(window.location.href.indexOf('https') !== 0) {
+    window.location = window.location.href.replace('http', 'https');
+  }
+  var client_id = window.location.href.split('?')[0];
+  var redirect_uri = client_id;
 
   // FIXME get initial space from config
   var spaces = loadSpaces();
@@ -245,6 +249,7 @@ $(function(){
       localStorage.persona = params.me;
       enablePersona();
       $('#persona input').val(params.me);
+      history.pushState(null, 'view', '?url=' + getSpace({ state: params.state }).url) ;
       getAccessToken(params);
     }
   }
