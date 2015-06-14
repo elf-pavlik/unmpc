@@ -41,6 +41,12 @@ $(function(){
     return JSON.parse(localStorage.spaces);
   }
 
+  function setPersona(persona) {
+    if(persona) {
+      $('#persona input').attr('placeholder', persona);
+    }
+  }
+
   function enablePersona(){
     $('#persona button').attr('disabled', false);
     $('#persona input').attr('disabled', false);
@@ -54,11 +60,13 @@ $(function(){
   function enableEditor(){
     $('#editor button').attr('disabled', false);
     $('#editor textarea').attr('disabled', false);
+    $('#editor textarea').attr('placeholder', 'Enter your message...');
   }
 
   function disableEditor(){
     $('#editor button').prop('disabled', true);
     $('#editor textarea').prop('disabled', true);
+    $('#editor textarea').attr('placeholder', 'Sign in to see if you can post on this wall...');
   }
 
   /*
@@ -129,8 +137,8 @@ $(function(){
     query += '&redirect_uri=' + redirect_uri;
     query += '&me=' + options.me;
     query += '&state=' + state;
-    axios.post(discoverAuthorization().token_endpoint, query, {
-      headers: {'Content-Type': 'application/x-www-form-urlencoded'},
+    axios.post(discoverAuthorization(space).token_endpoint, query, {
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
       responseType: 'json'
     })
     .then(function(response){
@@ -143,6 +151,22 @@ $(function(){
       delete space.state;
       viewSpace(space.url);
       enableEditor();
+    }).catch(function(error){ console.log(error); });
+  }
+
+  function postMessage(message) {
+    var space = getSpace({ url: $('#space input').val() });
+    // FIXME check if token available
+    axios.post(space.micropub, 'h=entry&content=' + message, {
+      headers: {
+        'Authorization': 'Bearer ' + space.token,
+        'Content-Type': 'application/x-www-form-urlencoded'
+      }
+    })
+    .then(function(response){
+      console.log('published to', response.headers['Location']);
+      viewSpace(space.url);
+      $('#editor textarea').val('');
     }).catch(function(error){ console.log(error); });
   }
 
@@ -159,6 +183,8 @@ $(function(){
     spaces = [{ url: 'https://phubble.tuxed.net/just-testing/' }];
   }
 
+  setPersona(localStorage.persona);
+
   $('#space button').on('click', function() {
     console.log('view space');
     var url = $('#space input').val();
@@ -173,11 +199,21 @@ $(function(){
   $('#persona button').on('click', function() {
     console.log('sign in');
     var me = $('#persona input').val();
+    if(!me) me = localStorage.persona;
     if(me) {
       console.log('signing in:', me);
       redirectToAuthorize({ me: me, audience: getSpace({ url: $('#space input').val() }).micropub });
     } else {
       console.log('no identity provided');
+    }
+  });
+  $('#editor button').on('click', function() {
+    console.log('post');
+    var message = $('#editor textarea').val();
+    if(message) {
+      postMessage(message);
+    } else {
+      console.log('no message to post');
     }
   });
 
@@ -194,6 +230,7 @@ $(function(){
     // FIXME check state
     if(params.me) {
       console.log('authenticated as: ', params.me);
+      localStorage.persona = params.me;
       enablePersona();
       $('#persona input').val(params.me);
     }

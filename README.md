@@ -8,15 +8,15 @@ app](https://unhosted.org/)
 ### app.js
 * [ ] get initial space from config
 * [ ] get container node in different way
+* [ ] remove query after auth and set ?url=
 
 ## TODO
 
-* [ ] use query-string parsing library
-* [ ] setup CORS proxy as fallback
+* [ ] use query-string library to parse/serialize
+* [ ] setup CORS proxy as fallback (client_id ?)
 
 
 ## BACKLOG
-* [ ] sign in to post button, enable editor after signing in
 * [ ] color highlight if agent uses HTTPS (warning if not)
 * [ ] color highlight if feed uses HTTPS (warning if not)
 * [ ] fetch authors profiles and include avatars if discovered
