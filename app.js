@@ -14,7 +14,9 @@ $(function(){
     if(!space) {
       space = { url: url };
       spaces.push(space);
+      saveSpaces();
     }
+    history.pushState(null, 'view', '?url=' + url) ;
     axios.get(space.url)
     .then(function(response) {
       var html = $.parseHTML(response.data);
@@ -25,7 +27,7 @@ $(function(){
       $('#space input').val(space.url);
 
       // FIXME get container in different way
-      var items = microformats.getItems({ node: html[13] }).items;
+      var items = microformats.getItems({ node: html[17] }).items;
       $('#wall ul').empty();
       items.forEach(function(item) {
         $('#wall ul').append('<li class="list-group-item"><div>' + item.properties.content + '</div><span>' + item.properties.published  + '</span> <span>' + item.properties.author  +  '</span></li>');
@@ -34,11 +36,16 @@ $(function(){
   }
 
   function saveSpaces() {
+    console.log('save spaces ', spaces);
     localStorage.spaces = JSON.stringify(spaces);
   }
 
   function loadSpaces() {
-    return JSON.parse(localStorage.spaces);
+    if(localStorage.spaces) {
+      return JSON.parse(localStorage.spaces);
+    } else {
+      return null;
+    }
   }
 
   function setPersona(persona) {
@@ -149,6 +156,7 @@ $(function(){
       console.log('authorized to access: ', space.url);
       space.token = response.data.access_token;
       delete space.state;
+      saveSpaces();
       viewSpace(space.url);
       enableEditor();
     }).catch(function(error){ console.log(error); });
@@ -164,7 +172,7 @@ $(function(){
       }
     })
     .then(function(response){
-      console.log('published to', response.headers['Location']);
+      console.log('published to', response.headers.location);
       viewSpace(space.url);
       $('#editor textarea').val('');
     }).catch(function(error){ console.log(error); });
@@ -186,8 +194,8 @@ $(function(){
   setPersona(localStorage.persona);
 
   $('#space button').on('click', function() {
-    console.log('view space');
     var url = $('#space input').val();
+    console.log('view space', url);
     if(url) {
       console.log(url);
       viewSpace(url);
@@ -220,7 +228,6 @@ $(function(){
   $('#editor').hide();
   disablePersona();
 
-  // auth
   var query = window.location.search;
   if(query) {
     // TODO use query-string parsing library
@@ -228,13 +235,18 @@ $(function(){
     query.replace('?', '').split('&').forEach(function(pair){ pair = pair.split('='); params[pair[0]] = pair[1]; });
     // FIXME check me
     // FIXME check state
+    // view
+    if(params.url) {
+      viewSpace(params.url);
+    }
+    // auth
     if(params.me) {
       console.log('authenticated as: ', params.me);
       localStorage.persona = params.me;
       enablePersona();
       $('#persona input').val(params.me);
+      getAccessToken(params);
     }
-    getAccessToken(params);
   }
 
   //debug

@@ -12,6 +12,7 @@ app](https://unhosted.org/)
 
 ## TODO
 
+* [ ] reuse saved access tokens
 * [ ] use query-string library to parse/serialize
 * [ ] setup CORS proxy as fallback (client_id ?)
 
