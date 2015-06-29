@@ -17,7 +17,15 @@ $(function(){
       saveSpaces();
     }
     history.pushState(null, 'view', '?url=' + url) ;
-    axios.get(space.url)
+    var options = {};
+    if(space.token) {
+      options = {
+        headers: {
+          'Authorization': 'Bearer ' + space.token
+        }
+      };
+    }
+    axios.get(space.url, options)
     .then(function(response) {
       var html = $.parseHTML(response.data);
       space.micropub = discoverMicropub(html);
@@ -26,8 +34,8 @@ $(function(){
       $('#editor').show();
       $('#space input').val(space.url);
 
-      // FIXME get container in different way
-      var items = microformats.getItems({ node: html[17] }).items;
+      // FIXME get items from the body
+      var items = microformats.getItems({ node: $(html).filter('#container')[0] }).items;
       $('#wall ul').empty();
       items.forEach(function(item) {
         $('#wall ul').append('<li class="list-group-item"><div>' + item.properties.content + '</div><span>' + item.properties.published  + '</span> <span>' + item.properties.author  +  '</span></li>');
@@ -186,6 +194,10 @@ $(function(){
     window.location = window.location.href.replace('http', 'https');
   }
   var client_id = window.location.href.split('?')[0];
+  // dev
+  //if(client_id.indexOf('https') !== 0) {
+    //client_id = client_id.replace('http', 'https');
+  //}
   var redirect_uri = client_id;
 
   // FIXME get initial space from config

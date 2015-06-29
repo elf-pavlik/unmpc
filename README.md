@@ -8,7 +8,6 @@ app](https://unhosted.org/)
 ### app.js
 * [ ] get initial space from config
 * [ ] get container node in different way
-* [ ] remove query after auth and set ?url=
 
 ## TODO
 
