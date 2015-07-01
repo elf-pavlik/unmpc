@@ -1,0 +1,27 @@
+{
+  "name": "microformat-shiv",
+  "version": "0.3.4",
+  "main": "microformat-shiv.js",
+  "ignore": [
+    "**/.*",
+    "examples",
+    "lib",
+    "node_modules",
+    "test",
+    ".gitignore",
+    "Gruntfile.js",
+    "package.json",
+    "testlink.html",
+    "bower.json"
+  ],
+  "homepage": "https://github.com/glennjones/microformat-shiv",
+  "_release": "0.3.4",
+  "_resolution": {
+    "type": "version",
+    "tag": "v0.3.4",
+    "commit": "dd724675af8d9dddf03a3bc957af89744cad265e"
+  },
+  "_source": "git://github.com/glennjones/microformat-shiv.git",
+  "_target": "~0.3.4",
+  "_originalSource": "microformat-shiv"
+}
