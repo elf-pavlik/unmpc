@@ -33,6 +33,16 @@ $(function(){
       enablePersona();
       $('#editor').show();
       $('#space input').val(space.url);
+      if(space.persona) {
+        $('#persona input').val(space.persona);
+      } else {
+        $('#persona input').val('');
+      }
+      if(space.token) {
+        enableEditor();
+      } else {
+        disableEditor();
+      }
 
       // FIXME get items from the body
       var items = microformats.getItems({ node: $(html).filter('#container')[0] }).items;
@@ -163,6 +173,7 @@ $(function(){
       var space = getSpace({ state: state });
       console.log('authorized to access: ', space.url);
       space.token = response.data.access_token;
+      space.persona = options.me;
       delete space.state;
       saveSpaces();
       viewSpace(space.url);
@@ -273,4 +284,6 @@ $(function(){
   window.app.disableEditor = disableEditor;
   window.app.discoverMicropub = discoverMicropub;
   window.app.discoverAuthorization = discoverAuthorization;
+
+  console.log('spaces', spaces);
 });
